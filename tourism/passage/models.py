@@ -42,7 +42,3 @@ class Images(models.Model):
 
     passage = models.ForeignKey(Passages, on_delete=models.CASCADE, null=True, blank=True)
 
-
-from django.db import models
-
-# Create your models here.
