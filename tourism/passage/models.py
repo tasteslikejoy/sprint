@@ -31,7 +31,7 @@ class Passages(models.Model):
     connect = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=10, choices=CHOICE_TYPE, default='new')
 
-    user = models.ForeignKey(Coordinates, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     coordinates = models.ForeignKey(Coordinates, on_delete=models.CASCADE)
     level = models.ForeignKey(Levels, on_delete=models.CASCADE)
 

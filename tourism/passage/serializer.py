@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import *
+from .models import User, Coordinates, Levels, Passages, Images
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,7 +23,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
                 otc=self.validated_data.get('otc')
             )
             return new_user
-
 
 
 class CoordinatesSerializer(serializers.HyperlinkedModelSerializer):
