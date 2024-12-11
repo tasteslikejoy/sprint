@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'drf_spectacular',
-    'passage'
+    'passage',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
