@@ -37,7 +37,7 @@ class Passages(models.Model):
 
 
 class Images(models.Model):
-    urls = models.URLField(null=True, blank=True)
+    urls = models.TextField(null=True, blank=True)
     title = models.TextField(max_length=255, null=True, blank=True)
 
     passage = models.ForeignKey(Passages, on_delete=models.CASCADE, null=True, blank=True)

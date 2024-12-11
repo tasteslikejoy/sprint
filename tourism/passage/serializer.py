@@ -44,16 +44,20 @@ class ImagesSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class PassagesSerializer(serializers.HyperlinkedModelSerializer):
-    user = UserSerializer()
-    coord = CoordinatesSerializer()
-    lvl = LevelsSerializer()
-    img = ImagesSerializer()
+    user = UserSerializer(many=True, read_only=True)
+    coordinates = CoordinatesSerializer(many=True, read_only=True)
+    level = LevelsSerializer(many=True, read_only=True)
+    image = ImagesSerializer(many=True, read_only=True)
     add_time = serializers.DateTimeField(format='%d %m %Y %H:%M:%S', read_only=True)
     status = serializers.CharField(read_only=True)
 
     class Meta:
         model = Passages
-        fields = ['title', 'beauty_title', 'other_title', 'connect']
+        fields = ['id', 'title', 'beauty_title',
+                  'other_title', 'connect', 'user',
+                  'coordinates', 'level', 'image',
+                  'add_time', 'status']
+        depth = 1
 
     def validate(self, data):
 

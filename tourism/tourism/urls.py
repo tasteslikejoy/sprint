@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from passage.views import PassagesView
+from .yasg import urlpatterns as doc_urls
 
 
 
@@ -28,5 +29,9 @@ router.register(r'passages', PassagesView)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('passage/<int:pk>/', PassagesView.as_view({'get': 'list'}), name='passage-detail'),
+    path('passage/', PassagesView.as_view({'get': 'list'}), name='passages-list'),
 ]
+
+urlpatterns += doc_urls
