@@ -49,14 +49,14 @@ class PassagesTests(APITestCase):
         self.assertEqual(status.HTTP_200_OK, response.status_code)
 
     def test_get_detail(self):
-        url = reverse('passage-detail', args=(self.passage_1.id,))
+        url = reverse('passages-detail', args=(self.passage_1.id,))
         response = self.client.get(url)
         serializer_data = PassagesSerializer(self.passage_1).data
         self.assertEqual(serializer_data, response.data)
         self.assertEqual(status.HTTP_200_OK, response.status_code)
 
     def test_passage_update(self):
-        url = reverse('passage-detail', args=(self.passage_1.id,))
+        url = reverse('passages-detail', args=(self.passage_1.id,))
         data = {
             'user': {
                 'email': 'test@test.com',
@@ -103,7 +103,7 @@ class PassagesTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_create(self):
-        url = reverse('passage-list')
+        url = reverse('passages-list')
         data = {
             'user': {
                 'email': 'test2@test.com',

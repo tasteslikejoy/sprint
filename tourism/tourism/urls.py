@@ -30,8 +30,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('passage/<int:pk>/', PassagesView.as_view({'get': 'list'}), name='passage-detail'),
-    path('passage/', PassagesView.as_view({'get': 'list'}), name='passages-list'),
 ]
 
 urlpatterns += doc_urls
