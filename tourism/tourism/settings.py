@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
     'passage',
-    'drf_yasg'
 ]
 
 MIDDLEWARE = [

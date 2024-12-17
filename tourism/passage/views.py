@@ -1,31 +1,36 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework import viewsets, status
-
 from .serializer import UserSerializer, CoordinatesSerializer, LevelsSerializer, ImagesSerializer, PassagesSerializer
 from .models import User, Coordinates, Levels, Passages, Images
+from drf_spectacular.utils import extend_schema
 
 
+@extend_schema(tags=['API по работе с координатами'])
 class CoordinatesView(viewsets.ModelViewSet):
     queryset = Coordinates.objects.all()
     serializer_class = CoordinatesSerializer
 
 
+@extend_schema(tags=['API по работе с уровнями'])
 class LevelsView(viewsets.ModelViewSet):
     queryset = Levels.objects.all()
     serializer_class = LevelsSerializer
 
 
+@extend_schema(tags=['API по работе с картинками'])
 class ImagesView(viewsets.ModelViewSet):
     queryset = Images.objects.all()
     serializer_class = ImagesSerializer
 
 
+@extend_schema(tags=['API по работе с пользователями'])
 class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
+@extend_schema(tags=['API по работе с перевалами'])
 class PassagesView(viewsets.ModelViewSet):
     queryset = Passages.objects.all()
     serializer_class = PassagesSerializer
@@ -33,6 +38,7 @@ class PassagesView(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['user__email']
 
+    @extend_schema(tags=['Создание'])
     def create(self, request, *args, **kwargs):
         serializer = PassagesSerializer(data=request.data)
 
@@ -64,6 +70,7 @@ class PassagesView(viewsets.ModelViewSet):
                 }
             )
 
+    @extend_schema(tags=['Изменение'])
     def partial_update(self, request, *args, **kwargs):
         passage = self.get_object()
 
